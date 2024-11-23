@@ -9,7 +9,7 @@
 - Licença
 
 ## Descrição
-_Este projeto tem como finalidade..._
+_O sistema **Gerenciamento Estudantil em Java** tem como finalidade centralizar e facilitar o controle de informações acadêmicas, permitindo o cadastro, consulta, edição, exclusão e geração de relatórios de alunos, professores e cursos. Aplicando conceitos de Programação Orientada a Objetos (POO), o sistema possibilita a associação de alunos e professores aos cursos, promovendo uma gestão organizada e eficiente. Com menus intuitivos e relatórios detalhados, a aplicação busca oferecer uma interface simples e funcional para atender às necessidades acadêmicas._
 
 ## Instalação
 _Para a execução desse programa serão necessárias algumas instalações em sua máquina:_
@@ -23,13 +23,15 @@ _Para configurar o projeto com exito em sua máquina siga esses passos:_
 
 ## Estrutura do projeto
 _A estrutura desse projeto consiste em:_
-- ...
--
+- Models (armazena os atributos e métodos de cada classe)
+- Controllers (chamada de funções)
+- Service (estrutura das funções)
 
-## Contrinuição
+## Contribuição
 - [V1N1NUNES](https://github.com/V1N1NUNES)
-- []()
-- []()
+- [dudamarqs](https://github.com/dudamarqs)
+- [RamonMiguel717](https://github.com/RamonMiguel717)
+- [RafaelCanavarro](https://github.com/RafaelCanavarro)
 
 ## Licença
 MIT License
