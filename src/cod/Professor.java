@@ -1,8 +1,10 @@
-package src.Classes;
+package src.cod;
+
+import src.Models.Pessoa;
 
 import java.util.Scanner;
 
-public class Professor extends Pessoa{
+public class Professor extends Pessoa {
     String especialidade;
 
     //construtor da classe "Pessoa" com a implementação de "Especialidades"

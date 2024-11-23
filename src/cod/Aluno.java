@@ -1,12 +1,14 @@
-package src.Classes;
+package src.cod;
+
+import src.Models.Pessoa;
 
 import java.util.Scanner;
 
-public class Estudante extends Pessoa{
+public class Aluno extends Pessoa {
     double matricula;
 
     //construtor da classe "Pessoa" com a implementação de "Matricula"
-    public Estudante(String Nome, int Idade, double Matricula) {
+    public Aluno(String Nome, int Idade, double Matricula) {
         super(Nome, Idade);
         this.matricula = Matricula;
     }

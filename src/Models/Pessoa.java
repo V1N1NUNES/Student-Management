@@ -1,4 +1,4 @@
-package src.Classes;
+package src.Models;
 
 //construtor da classe abstrata
 abstract public class Pessoa {
