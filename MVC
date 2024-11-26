@@ -1,0 +1,20 @@
+Model (Modelo)
+- Responsabilidade: Gerenciar a lógica dos dados da aplicação e a comunicação com o banco de dados.
+- Função: Representa o estado da aplicação (dados) e a lógica de negócios.
+- Exemplo: Classes que definem objetos e interagem com a base de dados, como um modelo de usuário que valida entradas e armazena informações no banco de dados.
+
+View (Visão)
+- Responsabilidade: Apresentar os dados ao usuário de forma visual.
+- Função: Renderizar a interface do usuário, exibindo dados do modelo de uma maneira apropriada.
+- Exemplo: Arquivos HTML, CSS e scripts JavaScript que compõem a interface do usuário, como formulários e páginas web que exibem informações ao usuário.
+
+Controller (Controlador)
+- Responsabilidade: Intermediar a interação entre Model e View.
+- Função: Receber entradas do usuário, processá-las e atualizar o Model ou View conforme necessário.
+- Exemplo: Classes ou métodos que recebem solicitações HTTP, executam a lógica de negócios e determinam qual View renderizar.
+
+Fluxo do MVC
+1.Usuário interage com a View: Ex.: Clicando em um botão ou submetendo um formulário.
+2.Controller recebe a entrada: Ex.: Controlador processa a solicitação, interage com o Model se necessário.
+3.Model é atualizado: Ex.: Controlador atualiza ou consulta o Model.
+4.View é atualizada: Ex.: Controller seleciona a View apropriada para renderizar a resposta ao usuário.
