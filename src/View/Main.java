@@ -1,4 +1,4 @@
-package src;
+package src.View;
 
 public class Main {
     public static void main(){

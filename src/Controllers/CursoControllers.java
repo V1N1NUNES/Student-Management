@@ -1,4 +1,4 @@
 package src.Controllers;
 
-public class CursoControllers {
+public class CursoControllers extends Curso{
 }

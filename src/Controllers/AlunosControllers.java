@@ -1,4 +1,4 @@
 package src.Controllers;
 
-public class AlunosControllers {
+public class AlunosControllers extends Aluno{
 }
