@@ -3,14 +3,14 @@ package src.models;
 public class Professor {
     private String nome;
     private int idade;
-    private String especialidade;
+    private String disciplina;
     private String cpf;
 
     // Construtor
-    public Professor(String nome, int idade, String especialidade, String cpf) {
+    public Professor(String nome, int idade, String disciplina, String cpf) {
         this.nome = nome;
         this.idade = idade;
-        this.especialidade = especialidade;
+        this.disciplina = disciplina;
         this.cpf = cpf;
     }
 
@@ -23,8 +23,8 @@ public class Professor {
         return idade;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getDisciplina() {
+        return disciplina;
     }
 
     public String getCpf() {
@@ -40,11 +40,19 @@ public class Professor {
         this.idade = idade;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void exibirDados() {
+        System.out.println("--------------------------");
+        System.out.println("Nome: " + getNome());
+        System.out.println("Idade: " + getIdade());
+        System.out.println("Disciplina: " + disciplina);
+        System.out.println("--------------------------\n");
     }
 }
