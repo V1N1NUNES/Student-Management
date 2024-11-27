@@ -19,7 +19,7 @@ public class Main {
         int opcao = 0;
 
         do {
-            System.out.println("== MENU PRINCIPAL ==\n");
+            System.out.println("\n== MENU PRINCIPAL ==\n");
             System.out.println("[1] Menu Aluno");
             System.out.println("[2] Menu Professor");
             System.out.println("[3] Menu Cursos");
