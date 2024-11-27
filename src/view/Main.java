@@ -21,7 +21,7 @@ public class Main {
             System.out.println("[3] Menu Cursos");
             System.out.println("[4] Sair");
 
-            System.out.print("\nEscolha uma opção: ");
+            System.out.print("\nOpção: ");
             opcao = sc.nextInt();
             sc.nextLine(); // Limpa o buffer após nextInt()
 
