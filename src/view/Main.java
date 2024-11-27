@@ -1,5 +1,6 @@
 package src.view;
 
+import src.controllers.AlunoController;
 import src.controllers.ProfessorController;
 
 import java.util.Scanner;
@@ -9,6 +10,9 @@ public class Main {
     public static void main(String[] args) {
         new Main().menuPrincipal();
     }
+
+    ProfessorController professorController = new ProfessorController();
+    AlunoController alunoController = new AlunoController();
 
     public void menuPrincipal() {
         Scanner sc = new Scanner(System.in);
@@ -27,10 +31,10 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    // menuAlunos(sc);
+                    alunoController.menuAlunos();
                     break;
                 case 2:
-                    menuProfessores(sc);
+                    professorController.menuProfessor();
                     break;
                 case 3:
                     // menuCursos(sc);
