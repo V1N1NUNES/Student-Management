@@ -70,7 +70,7 @@ public class ProfessorController {
             for (Professor professor : professores) {
                 System.out.println("Nome: " + professor.getNome());
                 System.out.println("Idade: " + professor.getIdade());
-                System.out.println("Especialidade: " + professor.getEspecialidade());
+                System.out.println("Disciplina: " + professor.getDisciplina());
                 System.out.println("CPF: " + professor.getCpf());
                 System.out.println("-----------------------------");
             }
@@ -91,7 +91,7 @@ public class ProfessorController {
                 System.out.println("Professor encontrado!");
                 System.out.println("Nome: " + professor.getNome());
                 System.out.println("Idade: " + professor.getIdade());
-                System.out.println("Especialidade: " + professor.getEspecialidade());
+                System.out.println("Disciplina: " + professor.getDisciplina());
                 encontrado = true;
                 break;
             }
@@ -186,7 +186,7 @@ public class ProfessorController {
                     System.out.println("2. Idade");
                     System.out.println("3. Especialidade");
                     System.out.println("4. Sair");
-                    System.out.print("Opção: ");
+                    System.out.print("\nOpção: ");
                     opcao = scanner.nextInt();
                     scanner.nextLine(); // Consumir quebra de linha pendente
 
@@ -218,18 +218,18 @@ public class ProfessorController {
                             break;
 
                         case 3:
-                            System.out.print("Digite a nova especialidade: ");
-                            String novaEspecialidade = scanner.nextLine();
-                            professor.setEspecialidade(novaEspecialidade);
-                            System.out.println("Especialidade atualizada com sucesso!");
+                            System.out.print("Digite a nova disciplina: ");
+                            String novaDisciplina = scanner.nextLine();
+                            professor.setDisciplina(novaDisciplina);
+                            System.out.println("Disciplina atualizada com sucesso!");
                             break;
 
                         case 4:
-                            System.out.println("Encerrando a modificação.");
+                            System.out.println("Encerrando a modificação.\n");
                             break;
 
                         default:
-                            System.out.println("Opção inválida. Tente novamente.");
+                            System.out.println("Opção inválida. Tente novamente.\n");
                     }
                 } while (opcao != 4);
                 break;
@@ -284,24 +284,24 @@ public class ProfessorController {
                                         break;
                                     }
                                 } catch (NumberFormatException e) {
-                                    System.out.println("Por favor, insira uma idade válida.");
+                                    System.out.println("Por favor, insira uma idade válida.\n");
                                 }
                             }
                             break;
 
                         case 3:
                             System.out.print("Digite a nova especialidade: ");
-                            String novaEspecialidade = scanner.nextLine();
-                            professor.setEspecialidade(novaEspecialidade);
-                            System.out.println("Especialidade atualizada com sucesso!");
+                            String novaDisciplina = scanner.nextLine();
+                            professor.setDisciplina(novaDisciplina);
+                            System.out.println("Disciplina atualizada com sucesso!");
                             break;
 
                         case 4:
-                            System.out.println("Encerrando a modificação.");
+                            System.out.println("Encerrando a modificação.\n");
                             break;
 
                         default:
-                            System.out.println("Opção inválida. Tente novamente.");
+                            System.out.println("Opção inválida. Tente novamente.\n");
                     }
                 } while (opcao != 4);
                 break;
@@ -309,20 +309,21 @@ public class ProfessorController {
         }
 
         if (!encontrado) {
-            System.out.println("Professor não encontrado.");
+            System.out.println("Professor não encontrado.\n");
         }
 
     }
 
     public void menuProfessor() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         int opcao = 0;
 
         do {
-            System.out.println("\n== MENU PROFESSOR ==");
+            System.out.println("== MENU PROFESSOR ==\n");
             System.out.println("[1] Cadastrar professor");
             System.out.println("[2] Consultar professor");
             System.out.println("[3] Voltar");
+            opcao = sc.nextInt();
 
             switch (opcao) {
                 case 1:
@@ -334,7 +335,7 @@ public class ProfessorController {
                 case 3:
                     break;
                 default:
-                    System.out.println("\nOpção inválide! Tente novamente.");
+                    System.out.println("\nOpção inválida! Tente novamente.\n");
             }
         } while (opcao != 3);
     }
