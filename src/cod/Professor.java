@@ -1,6 +1,6 @@
 package src.cod;
 
-import src.Models.Pessoa;
+import src.models.Pessoa;
 
 import java.util.Scanner;
 

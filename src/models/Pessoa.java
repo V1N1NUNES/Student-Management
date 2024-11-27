@@ -1,14 +1,12 @@
-package src.Models;
+package src.models;
 
-//construtor da classe abstrata
-abstract public class Pessoa {
-    String nome;
-    int idade;
+public abstract class Pessoa {
+    protected String nome;
+    protected int idade;
 
-    //metodos gatters and setters
-    public Pessoa(String Nome, int Idade){
-        this.nome = Nome;
-        this.idade = Idade;
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
     }
 
     public String getNome() {
@@ -16,6 +14,9 @@ abstract public class Pessoa {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio!");
+        }
         this.nome = nome;
     }
 
@@ -24,11 +25,11 @@ abstract public class Pessoa {
     }
 
     public void setIdade(int idade) {
+        if (idade < 0) {
+            throw new IllegalArgumentException("Idade não pode ser negativa!");
+        }
         this.idade = idade;
     }
 
-    //metodos
-    public void exibirDados(){
-        System.out.println("Nome: " + getNome()+ "\nIdade: "+ getIdade());
-    }
+    public abstract void exibirDados();
 }
