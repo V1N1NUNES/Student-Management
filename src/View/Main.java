@@ -1,14 +1,50 @@
 package src.View;
 
+import src.Controllers.ProfessorController;
+import src.Controllers.CursoControllers;
+import src.Controllers.AlunoController;
+
+import java.util.Scanner;
+
 public class Main {
-    public static void main(){
 
+    public static void main(String[] args) {
+        new Main().menuPrincipal();
     }
-    public void MenuPrincipal(){
-        int opcao;
 
-        System.out.println("MENU PRINCIPAL\n\n1- Menu estudante/alunos\n2- Menu professor\n3- Menu Cursos\n4- Sair");
-        //implementar Menu principal
+    public void menuPrincipal() {
+        Scanner sc = new Scanner(System.in);
+        int opcao = 0;
+
+        do {
+            System.out.println("== MENU PRINCIPAL ==\n");
+            System.out.println("[1] Menu Aluno");
+            System.out.println("[2] Menu Professor");
+            System.out.println("[3] Menu Cursos");
+            System.out.println("[4] Sair");
+
+            System.out.print("\nOpção: ");
+            opcao = sc.nextInt();
+            sc.nextLine(); // Limpa o buffer após nextInt()
+
+            switch (opcao) {
+                case 1:
+                    // menuAlunos(sc);
+                    break;
+                case 2:
+                    menuProfessores(sc);
+                    break;
+                case 3:
+                    // menuCursos(sc);
+                    break;
+                case 4:
+                    System.out.println("\nSaindo do programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        } while (opcao != 4);
+
+        sc.close();
     }
 }
-
