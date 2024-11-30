@@ -23,7 +23,7 @@ public class Relatorios {
                     RelatorioController.relatorioDeEstudantes();
                     break;
                 case 2:
-                    RelatorioController.relatorioDeProfessores();
+                    //RelatorioController.relatorioDeProfessores();
                     break;
                 case 3:
                     Main.enviarMenu();

@@ -59,7 +59,7 @@ public class CursoController {
                             ProfessorController.cadastrarProfessor();
                             break;
                         case 2:
-                            Main.enviarMenu();
+                            CursoView.enviarMenuCurso();
                             return;
                         default:
                             System.out.println("Opção inválida.\n");
@@ -163,12 +163,12 @@ public class CursoController {
                 }
             }while(opcao <= 0 || opcao >= 3);
         }else{
-            CursoView.menuEdicao(nomeCurso);
+            CursoView.menuEdicao();
         }
 
         Main.enviarMenu();
         //leitura.close();
-    }
+    }   //error
 
     public static void excluirCurso(){
         Scanner leitura = new Scanner(System.in);
@@ -206,7 +206,7 @@ public class CursoController {
             CursoView.enviarMenuCurso();
         }
         //leitura.close();
-    }
+    }     //error
 
     //metodos de edição e busca
     public static void alterarNome(String nome){
@@ -225,7 +225,7 @@ public class CursoController {
         Main.enviarMenu();
 
         //leitura.close();
-    }
+    }      //error
 
     public static void alterarCargaHoraria(String nome){
         Scanner leitura = new Scanner(System.in);
@@ -247,8 +247,8 @@ public class CursoController {
         //leitura.close();
     }
 
-    public static void alterarProfessor(String nome){
-        ProfessorController.editarProfessor(nome);
+    public static void alterarProfessor(String nomeCurso){
+        ProfessorController.editarProfessor(nomeCurso);
 
         System.out.println("Voltando para o menu.");
         Main.enviarMenu();

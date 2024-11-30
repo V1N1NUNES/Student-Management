@@ -2,6 +2,7 @@ package models;
 
 public class Professor extends Pessoa {
     private String especialidade;
+    //adicionar o arraylist de professores
 
     // Construtor
     public Professor(String nome, int idade, String especialidade) {

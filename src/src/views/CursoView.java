@@ -6,19 +6,58 @@ import java.util.Scanner;
 
 public class CursoView {
     public static void enviarMenuCurso(){
-        //implementar menu
-    }
-    public static void menuEdicao(){
         Scanner leitura = new Scanner(System.in);
         int opcao;
 
+        System.out.println("== Menu de cursos ==");
+        System.out.println("1. Cadastrar Curso");
+        System.out.println("2. Consultar Curso");
+        System.out.println("3. Editar Curso");
+        System.out.println("4. Excluir Curso");
+        System.out.println("5. Voltar para o Menu principal.");
+
+        opcao = leitura.nextInt();
+
+        if(opcao <= 0 || opcao >= 6){
+            System.out.println("Número digitado inválido.");
+        }
+
+        else{
+            switch(opcao){
+                case 1:
+                    CursoController.cadastrarCurso();
+                    break;
+
+                case 2:
+                    CursoController.consultarCurso();
+                    break;
+
+                case 3:
+                    CursoController.editarCurso();
+                    break;
+
+                case 4:
+                    CursoController.excluirCurso();
+                    break;
+
+                case 5:
+                    System.out.println("Voltando para o Menu principal.");
+                    Main.enviarMenu();
+                    break;
+            }
+        }
+    }
+
+    public static void menuEdicao(){
+        Scanner leitura = new Scanner(System.in);
+        int opcao;
+        String nomeCurso;
+
         do{
-            System.out.println("\n Sistema de Gerenciamento de Cursos");
-            System.out.println(" ");
-            System.out.println("1. Alterar nome do curso\n");
-            System.out.println("2. Alterar carga horária\n");
-            System.out.println("3. Alterar professor ministrante\n");
-            System.out.println("4. Voltar\n");
+            System.out.println("1. Alterar nome do curso");
+            System.out.println("2. Alterar carga horária");
+            System.out.println("3. Alterar professor ministrante");
+            System.out.println("4. Voltar");
             System.out.println(" ");
 
             opcao = leitura.nextInt();
@@ -26,20 +65,32 @@ public class CursoView {
             switch(opcao){
                 case 1:
                     Utilidades.limparMensagens();
-                    CursoController.alterarNome();
+                    System.out.println("Digite o nome do curso:");
+                    nomeCurso = leitura.nextLine();
+
+                    CursoController.alterarNome(nomeCurso);
                     break;
+
                 case 2:
                     Utilidades.limparMensagens();
-                    CursoController.alterarCargaHoraria();
+                    System.out.println("Digite o nome do curso:");
+                    nomeCurso = leitura.nextLine();
+
+                    CursoController.alterarCargaHoraria(nomeCurso);
                     break;
+
                 case 3:
                     Utilidades.limparMensagens();
-                    CursoController.alterarProfessor();
+                    System.out.println("Digite o nome do curso:");
+                    nomeCurso = leitura.nextLine();
+                    CursoController.alterarProfessor(nomeCurso);
                     break;
+
                 case 4:
                     Utilidades.limparMensagens();
                     Main.enviarMenu();
                     break;
+
                 default:
                     System.out.println("\nA opção informada não é válida.");
                     break;

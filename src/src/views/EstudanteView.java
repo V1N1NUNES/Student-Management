@@ -35,11 +35,11 @@ public class EstudanteView {
                     break;
                 case 3:
                     Utilidades.limparMensagens();
-                    //implmentar
+                    EstudanteController.editarEstudante();
                     break;
                 case 4:
                     Utilidades.limparMensagens();
-                    //implmentar
+                    EstudanteController.excluirEstudante();
                     break;
                 case 5:
                     Utilidades.limparMensagens();

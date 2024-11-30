@@ -48,7 +48,7 @@ public class EstudanteController {
 
         // Volta ao menu do estudante após o cadastro
         EstudanteView.enviarMenuAluno();
-    }
+    }  //error (verificação de matricula)
 
     // **Função para consultar um estudante**
     public static void consultarEstudante() {
@@ -66,7 +66,6 @@ public class EstudanteController {
 
         // Exibe as informações do estudante ou uma mensagem de erro
         if (estudanteAlvo != null) {
-            System.out.println("Informações do estudante:");
             estudanteAlvo.exibirDados(); // Exibe os dados do estudante
         } else {
             System.out.println("Estudante não encontrado.");
