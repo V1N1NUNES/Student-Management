@@ -9,6 +9,11 @@ public abstract class Pessoa {
         this.idade = idade;
     }
 
+    @Override
+    public String toString() {
+        return nome; // Retorna o nome do professor ao invés da representação padrão do objeto
+    }
+
     public String getNome() {
         return nome;
     }
