@@ -55,7 +55,7 @@ public class EstudanteController {
         String matriculaEstudante; // Matrícula a ser buscada
         Estudante estudanteAlvo = null; // Estudante encontrado (se existir)
 
-        // Solicita matrícula válida e verifica se há somente números
+        // Solicita matrícula válida e verifica se há somente números na entrada
         do {
             System.out.println("Digite a matrícula do estudante (apenas números): ");
             matriculaEstudante = scanner.nextLine();
