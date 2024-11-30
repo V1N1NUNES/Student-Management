@@ -64,30 +64,27 @@ public class CursoView {
 
             switch(opcao){
                 case 1:
-                    Utilidades.limparMensagens();
                     System.out.println("Digite o nome do curso:");
-                    nomeCurso = leitura.nextLine();
+                    nomeCurso = leitura.next();
 
                     CursoController.alterarNome(nomeCurso);
                     break;
 
                 case 2:
-                    Utilidades.limparMensagens();
                     System.out.println("Digite o nome do curso:");
-                    nomeCurso = leitura.nextLine();
+                    nomeCurso = leitura.next();
 
                     CursoController.alterarCargaHoraria(nomeCurso);
                     break;
 
                 case 3:
-                    Utilidades.limparMensagens();
                     System.out.println("Digite o nome do curso:");
-                    nomeCurso = leitura.nextLine();
+                    nomeCurso = leitura.next();
+
                     CursoController.alterarProfessor(nomeCurso);
                     break;
 
                 case 4:
-                    Utilidades.limparMensagens();
                     Main.enviarMenu();
                     break;
 

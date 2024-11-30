@@ -3,44 +3,46 @@ package models;
 import java.util.ArrayList;
 
 public class Estudante extends Pessoa {
-    private String matricula;
-    public static ArrayList<Estudante> estudantes = new ArrayList<Estudante>();
+    private String matricula;  // Armazena a matrícula do estudante.
+    public static ArrayList<Estudante> estudantes = new ArrayList<>();  // Lista estática de todos os estudantes.
 
-
-    //construtor da classe
+    // Construtor da classe: inicializa nome, idade e matrícula do estudante.
     public Estudante(String nome, int idade, String matricula) {
-        super(nome, idade);
+        super(nome, idade);  // Chama o construtor da classe Pessoa.
         this.matricula = matricula;
     }
 
-    
-    //getters and setters
+    // Getters e Setters para acessar e modificar a matrícula.
     public String getMatricula() {
-        return matricula;
+        return matricula;  // Retorna a matrícula do estudante.
     }
 
     public void setMatricula(String matricula) {
-        this.matricula = matricula;
+        this.matricula = matricula;  // Define a matrícula do estudante.
     }
 
     public static ArrayList<Estudante> getEstudantes() {
-        return estudantes;
+        return estudantes;  // Retorna a lista de todos os estudantes.
     }
 
+    // Adiciona um novo estudante à lista estática.
     public void addEstudante(Estudante estudante) {
         estudantes.add(estudante);
     }
 
+    // Remove um estudante da lista estática.
     public void removeEstudante(Estudante estudante) {
         estudantes.remove(estudante);
     }
 
     @Override
     public void exibirDados() {
+        // Sobrescreve o método exibirDados para exibir as informações do estudante.
         System.out.println("Informações do Estudante: ");
         System.out.println("- Nome: " + getNome());
         System.out.println("- Idade: " + getIdade());
-        System.out.println("- Matricula: " + getMatricula());
+        System.out.println("- Matrícula: " + getMatricula());
     }
 }
+
 

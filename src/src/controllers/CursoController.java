@@ -119,7 +119,7 @@ public class CursoController {
         System.out.println("Voltando para o menu.");
         Main.enviarMenu();
         //leitura.close();
-    }
+    }   //error (Erro para mostrar o professor do curso)
 
     public static void editarCurso(){
         Scanner leitura = new Scanner(System.in);
@@ -129,7 +129,7 @@ public class CursoController {
 
         do{
             System.out.println("Digite o nome do curso que deseja editar: ");
-            nomeCurso = leitura.nextLine();
+            nomeCurso = leitura.next();
 
             if(nomeCurso.isEmpty()){
                 System.out.println("Para editar um curso é necessário o nome do curso cadastrado.\n");
@@ -137,7 +137,7 @@ public class CursoController {
         }while(nomeCurso.isEmpty());
 
         if(Curso.buscarCursoPorNome(nomeCurso) != null){
-            cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);
+            cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);   //error na busca
             encontrado = true;
         }
 
@@ -168,7 +168,7 @@ public class CursoController {
 
         Main.enviarMenu();
         //leitura.close();
-    }   //error
+    }   //error (Erro ao buscar os cursos, editar carga horária, erro para alterar o professor monistrante)
 
     public static void excluirCurso(){
         Scanner leitura = new Scanner(System.in);
@@ -215,7 +215,7 @@ public class CursoController {
         Curso encontrado;
 
         System.out.println("Digite o novo nome para o curso:");
-        novoNome = leitura.nextLine();
+        novoNome = leitura.next();
 
         encontrado = Curso.buscarCursoPorNome(nome);
 
