@@ -9,6 +9,8 @@ public class EstudanteView {
     public static Estudante estudante;
 
     public static void enviarMenuAluno() {
+        Scanner scanner = new Scanner(System.in);
+
         Utilidades.limparMensagens();
         System.out.println("Menu de alunos:");
         System.out.println(" ");
@@ -18,7 +20,6 @@ public class EstudanteView {
         System.out.println("4. excluir aluno");
         System.out.println("5. Voltar ao menu principal");
 
-        Scanner scanner = new Scanner(System.in);
 
         int opcao = scanner.nextInt();
 
@@ -31,13 +32,13 @@ public class EstudanteView {
                     EstudanteController.consultarEstudante();
                     break;
                 case 3:
-                    //implmentar
+                    EstudanteController.editarEstudante();
                     break;
                 case 4:
-                    //implmentar
+                    EstudanteController.excluirEstudante();
                     break;
                 case 5:
-                    //implmentar
+                    Main.enviarMenu();
                     break;
                 default:
                     System.out.println("A opção informada não foi encontrada.");

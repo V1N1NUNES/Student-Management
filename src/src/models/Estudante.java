@@ -13,8 +13,7 @@ public class Estudante extends Pessoa {
         this.matricula = matricula;
     }
 
-
-
+    
     //getters and setters
     public String getMatricula() {
         return matricula;
