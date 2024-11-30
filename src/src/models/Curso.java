@@ -4,68 +4,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
-    private String nomeCurso;  // Armazena o nome do curso.
-    private int cargaHoraria;  // Armazena a carga horária total do curso.
-    private models.Professor professor;  // Referência ao professor responsável pelo curso.
-    private static List<Curso> cursos = new ArrayList<>();  // Lista estática que mantém todos os cursos criados.
+    private String nomeCurso;        // Nome do curso
+    private int cargaHoraria;        // Carga horária do curso
+    private Professor professor;     // Professor associado ao curso
+    private static List<Curso> cursos = new ArrayList<>(); // Lista estática de cursos
 
-    // Construtor de Curso: inicializa o nome, carga horária e professor.
-    public Curso(String nomeCurso, int cargaHoraria, Professor professor, List<Estudante> alunos) {
+    // **Construtor**
+    public Curso(String nomeCurso, int cargaHoraria, Professor professor) {
         this.nomeCurso = nomeCurso;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
     }
 
-    // Getters e Setters para acessar e modificar os atributos do curso.
+    // **Getters e Setters** (acessores e modificadores para os atributos)
     public String getNomeCurso() {
-        return nomeCurso;  // Retorna o nome do curso.
+        return nomeCurso;
     }
 
     public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;  // Define o nome do curso.
+        this.nomeCurso = nomeCurso;
     }
 
     public int getCargaHoraria() {
-        return cargaHoraria;  // Retorna a carga horária do curso.
+        return cargaHoraria;
     }
 
     public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;  // Define a carga horária do curso.
+        this.cargaHoraria = cargaHoraria;
     }
 
     public Professor getProfessor() {
-        return professor;  // Retorna o professor do curso.
+        return professor;
     }
 
     public void setProfessor(Professor professor) {
-        this.professor = professor;  // Define o professor do curso.
+        this.professor = professor;
     }
 
     public static List<Curso> getCursos() {
-        return cursos;  // Retorna a lista de todos os cursos.
+        return cursos;
     }
 
     public static void setCursos(ArrayList<Curso> cursos) {
-        Curso.cursos = cursos;  // Substitui a lista de cursos existente por uma nova lista.
+        Curso.cursos = cursos;
     }
 
-    // Busca um curso pelo nome, ignorando diferenças de maiúsculas/minúsculas.
-    // Retorna o curso encontrado ou null se não existir.
+    // **Métodos estáticos de busca e exclusão de cursos**
+
+    // Busca um curso pelo nome
     public static Curso buscarCursoPorNome(String nomeCurso) {
+        if (nomeCurso == null || nomeCurso.isEmpty()) {
+            System.out.println("Erro: Nome do curso não pode estar vazio.");
+            return null;
+        }
         return cursos.stream()
                 .filter(curso -> curso.getNomeCurso().equalsIgnoreCase(nomeCurso))
                 .findFirst()
-                .orElse(null);  // Possível erro: pode retornar null sem tratamento.
+                .orElse(null);
     }
 
-    // Exclui um curso pelo nome. Retorna true se o curso for encontrado e removido, false caso contrário.
+    // Exclui um curso pelo nome
     public static boolean excluirCursoPorNome(String nomeCurso) {
         Curso curso = buscarCursoPorNome(nomeCurso);
         if (curso != null) {
-            cursos.remove(curso);  // Remove o curso encontrado.
+            cursos.remove(curso);
+            System.out.println("Curso '" + nomeCurso + "' foi excluído com sucesso.");
             return true;
         }
-        return false;  // Retorna false se o curso não for encontrado.
+        System.out.println("Erro: Curso com o nome '" + nomeCurso + "' não foi encontrado.");
+        return false;
     }
-
 }

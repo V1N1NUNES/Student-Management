@@ -1,257 +1,166 @@
 package controllers;
 
 import models.Curso;
-import models.Estudante;
 import models.Professor;
 import views.CursoView;
-import views.Main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CursoController {
 
-    //metodos
     public static void cadastrarCurso() {
         Scanner leitura = new Scanner(System.in);
         String nomeCurso;
         int cargaHoraria;
         Professor ministrante = null;
-        String NomeMinistrante;
-        boolean validacao = false;
-        boolean encontrado = false;
-        ArrayList<Estudante> turma;
 
-        do {
-            System.out.println("Digite o nome do curso: ");
-            nomeCurso = leitura.nextLine();
+        System.out.println("Digite o nome do curso: ");
+        nomeCurso = leitura.nextLine().trim();
 
-            if (nomeCurso.isEmpty()) {
-                System.out.println("É necessário um nome para o curso.\n");
-                continue;
-            }
+        if (nomeCurso.isEmpty()) {
+            System.out.println("Erro: Nome do curso não pode estar vazio.");
+            return;
+        }
 
-            System.out.println("Digite a carga horária do curso: ");
-            cargaHoraria = leitura.nextInt();
-            leitura.nextLine();
+        System.out.println("Digite a carga horária do curso: ");
+        cargaHoraria = leitura.nextInt();
+        leitura.nextLine(); // Consumir quebra de linha
 
-            if (cargaHoraria <= 0) {
-                System.out.println("Digite uma carga horária válida para o curso.\n");
-                continue;
-            }
+        if (cargaHoraria <= 0) {
+            System.out.println("Erro: A carga horária deve ser maior que zero.");
+            return;
+        }
 
-            System.out.println("Digite o nome do professor ministrante (já cadastrado): ");
-            NomeMinistrante = leitura.nextLine();
+        System.out.println("Digite o nome do professor ministrante: ");
+        String nomeProfessor = leitura.nextLine().trim();
 
-            // Verifica se o professor existe
-            ministrante = ProfessorController.buscarProfessorPorNome(NomeMinistrante);
+        ministrante = ProfessorController.buscarProfessorPorNome(nomeProfessor);
 
-            if (ministrante == null) {
-                System.out.println("Professor não encontrado.\n");
-                int opcao;
-                do {
-                    System.out.println("Escolha uma opção: ");
-                    System.out.println("1. Cadastrar professor\n2. Voltar ao menu\n");
-                    opcao = leitura.nextInt();
-                    leitura.nextLine();
+        if (ministrante == null) {
+            System.out.println("Erro: Professor não encontrado. Cadastrar professor antes de continuar.");
+            return;
+        }
 
-                    switch (opcao) {
-                        case 1:
-                            ProfessorController.cadastrarProfessor();
-                            ministrante = ProfessorController.buscarProfessorPorNome(NomeMinistrante); // Atualiza a variável ministrante
-                            break;
-                        case 2:
-                            CursoView.enviarMenuCurso();
-                            return;
-                        default:
-                            System.out.println("Opção inválida.\n");
-                            break;
-                    }
-                } while (opcao <= 0 || opcao >= 3);
-            }
+        Curso novoCurso = new Curso(nomeCurso, cargaHoraria, ministrante);
 
-            turma = new ArrayList<>();
-            Curso NovoCurso = new Curso(nomeCurso, cargaHoraria, ministrante, turma);
+        if (Curso.getCursos() == null) {
+            Curso.setCursos(new ArrayList<>());
+        }
 
-            // Garantir que a lista não é nula antes de adicionar
-            if (Curso.getCursos() == null) {
-                Curso.setCursos(new ArrayList<>());
-            }
-            Curso.getCursos().add(NovoCurso);
-
-            System.out.println("Curso cadastrado com sucesso!\nNome: " + NovoCurso.getNomeCurso() +
-                    "\nCarga horária: " + NovoCurso.getCargaHoraria() +
-                    "\nProfessor: " + NovoCurso.getProfessor().getNome() + "\n");
-
-            validacao = true;
-
-        } while (!validacao);
-
-        System.out.println("Voltando ao Menu de cursos...\n");
-        Main.enviarMenu();
+        Curso.getCursos().add(novoCurso);
+        System.out.println("Curso cadastrado com sucesso: " + nomeCurso);
     }
 
-    public static void consultarCurso(){
+    public static void consultarCurso() {
         Scanner leitura = new Scanner(System.in);
-        String nomeCurso;
-        boolean encontrado = false;
-        Curso cursoEncontrado = null;
 
-        do{
-            System.out.println("Digite o nome do curso que deseja consultar: ");
-            nomeCurso = leitura.nextLine();
+        System.out.println("Digite o nome do curso que deseja consultar: ");
+        String nomeCurso = leitura.nextLine().trim();
 
-            if(nomeCurso.isEmpty()){
-                System.out.println("Para editar um curso é necessário o nome do curso cadastrado.");
-            }
-        }while(nomeCurso.isEmpty());
+        Curso curso = Curso.buscarCursoPorNome(nomeCurso);
 
-        if(Curso.buscarCursoPorNome(nomeCurso) != null){
-            cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);
-                    encontrado = true;
+        if (curso == null) {
+            System.out.println("Curso não encontrado.");
+            return;
         }
 
-        if(encontrado == false){
-            System.out.println("Curso não encontrado: Voltando para o Menu.");
-            Main.enviarMenu();
-        }
+        System.out.println("\n== Detalhes do Curso ==");
+        System.out.println("Nome: " + curso.getNomeCurso());
+        System.out.println("Carga Horária: " + curso.getCargaHoraria());
+        System.out.println("Professor: " + curso.getProfessor().getNome());
+    }
 
-        System.out.println("Nome: "+ cursoEncontrado.getNomeCurso() + "\nCarga horária: "+ cursoEncontrado.getCargaHoraria() + "\nProfessor ministrante: "+ cursoEncontrado.getProfessor() + "\n");
-        System.out.println("Voltando para o menu.");
-        Main.enviarMenu();
-        //leitura.close();
-    }   //error (Erro para mostrar o professor do curso)
-
-    public static void editarCurso(){
+    public static void editarCurso() {
         Scanner leitura = new Scanner(System.in);
-        String nomeCurso;
-        boolean encontrado = false;
-        Curso cursoEncontrado;
 
-        do{
-            System.out.println("Digite o nome do curso que deseja editar: ");
-            nomeCurso = leitura.next();
+        System.out.println("Digite o nome do curso que deseja editar:");
+        String nomeCurso = leitura.nextLine().trim();
 
-            if(nomeCurso.isEmpty()){
-                System.out.println("Para editar um curso é necessário o nome do curso cadastrado.\n");
-            }
-        }while(nomeCurso.isEmpty());
+        Curso cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);
 
-        if(Curso.buscarCursoPorNome(nomeCurso) != null){
-            cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);   //error na busca
-            encontrado = true;
+        if (cursoEncontrado == null) {
+            System.out.println("Curso não encontrado. Verifique o nome digitado.");
+            return;
         }
 
-        if(encontrado){
-            int opcao;
+        CursoView.menuEdicao(nomeCurso);
+    }
 
-            System.out.println("Curso " + nomeCurso + "não encontrado.\n");
-            System.out.println("1. Cadastrar novo curso\n2. Voltar ao menu.\n");
-            opcao = leitura.nextInt();
-
-            do{
-                switch(opcao){
-                    case 1:
-                        CursoController.cadastrarCurso();
-                        break;
-                    case 2:
-                        CursoView.enviarMenuCurso();
-                        break;
-                    default:
-                        System.out.println("Opção digitada inválida.Voltando ao menu de cursos\n");
-                        CursoView.enviarMenuCurso();
-                        break;
-                }
-            }while(opcao <= 0 || opcao >= 3);
-        }else{
-            CursoView.menuEdicao();
-        }
-
-        Main.enviarMenu();
-        //leitura.close();
-    }   //error (Erro ao buscar os cursos, editar carga horária, erro para alterar o professor monistrante)
-
-    public static void excluirCurso(){
+    public static void excluirCurso() {
         Scanner leitura = new Scanner(System.in);
-        String nomeCurso;
-        Curso cursoEncontrado;
-        boolean encontrado = false;
 
-        do{
-            System.out.println("Digite o nome do curso que deseja excluir: ");
-            nomeCurso = leitura.nextLine();
+        System.out.println("Digite o nome do curso que deseja excluir: ");
+        String nomeCurso = leitura.nextLine().trim();
 
-            if(nomeCurso.isEmpty()){
-                System.out.println("Para editar um curso é necessário o nome do curso cadastrado.");
-            }
-        }while(nomeCurso.isEmpty());
-
-        if(Curso.buscarCursoPorNome(nomeCurso) != null){
-            cursoEncontrado = Curso.buscarCursoPorNome(nomeCurso);
-            encontrado = true;
+        if (Curso.excluirCursoPorNome(nomeCurso)) {
+            System.out.println("Curso excluído com sucesso.");
+        } else {
+            System.out.println("Erro: Curso não encontrado.");
         }
+    }
 
-        if(encontrado){
-            System.out.println("O curso " + nomeCurso + "não foi encontrado.\nVoltando para o Menu de cursos");
-            CursoView.enviarMenuCurso();
-        }else{
-            boolean excluido;
-
-            excluido = Curso.excluirCursoPorNome(nomeCurso);
-
-            if(excluido){
-                System.out.println("O curso não foi excluido\n");
-                CursoController.consultarCurso();
-            }
-            System.out.println("Curso removido com sucesso!.Voltando ao menu.\n");
-            CursoView.enviarMenuCurso();
-        }
-        //leitura.close();
-    }    //error
-
-    //metodos de edição e busca
-    public static void alterarNome(String nome){
+    public static void alterarNome(String nomeCursoAtual) {
         Scanner leitura = new Scanner(System.in);
-        String novoNome;
-        Curso encontrado;
+
+        Curso curso = Curso.buscarCursoPorNome(nomeCursoAtual);
+        if (curso == null) {
+            System.out.println("Erro: Curso não encontrado.");
+            return;
+        }
 
         System.out.println("Digite o novo nome para o curso:");
-        novoNome = leitura.next();
+        String novoNome = leitura.nextLine().trim();
 
-        encontrado = Curso.buscarCursoPorNome(nome);
+        if (novoNome.isEmpty()) {
+            System.out.println("Erro: O nome não pode estar vazio.");
+            return;
+        }
 
-        System.out.println("Nome do curso alterado com sucesso!: " + encontrado.getNomeCurso());
-
-        System.out.println("Voltando para o menu.");
-        Main.enviarMenu();
-
-        //leitura.close();
-    }     //error
-
-    public static void alterarCargaHoraria(String nome){
-        Scanner leitura = new Scanner(System.in);
-        int novaCH;
-        Curso encontrado;
-
-        encontrado = Curso.buscarCursoPorNome(nome);
-
-        System.out.println("Digite a nova carga horária para o curso:");
-        novaCH = leitura.nextInt();
-
-        encontrado.setCargaHoraria(novaCH);
-
-        System.out.println("Carga Horária do curso alterada com sucesso!: " + encontrado.getCargaHoraria());
-
-        System.out.println("Voltando para o menu.");
-        Main.enviarMenu();
-
-        //leitura.close();
+        curso.setNomeCurso(novoNome);
+        System.out.println("Nome do curso alterado com sucesso para: " + novoNome);
     }
 
-    public static void alterarProfessor(String nomeCurso){
-        ProfessorController.editarProfessor(nomeCurso);
+    public static void alterarCargaHoraria(String nomeCurso) {
+        Scanner leitura = new Scanner(System.in);
 
-        System.out.println("Voltando para o menu.");
-        Main.enviarMenu();
+        Curso curso = Curso.buscarCursoPorNome(nomeCurso);
+        if (curso == null) {
+            System.out.println("Erro: Curso não encontrado.");
+            return;
+        }
+
+        System.out.println("Digite a nova carga horária:");
+        int novaCH = leitura.nextInt();
+
+        if (novaCH <= 0) {
+            System.out.println("Erro: A carga horária deve ser maior que zero.");
+            return;
+        }
+
+        curso.setCargaHoraria(novaCH);
+        System.out.println("Carga horária alterada com sucesso para: " + novaCH);
+    }
+
+    public static void alterarProfessor(String nomeCurso) {
+        Scanner leitura = new Scanner(System.in);
+
+        Curso curso = Curso.buscarCursoPorNome(nomeCurso);
+        if (curso == null) {
+            System.out.println("Erro: Curso não encontrado.");
+            return;
+        }
+
+        System.out.println("Digite o nome do novo professor ministrante:");
+        String nomeProfessor = leitura.nextLine().trim();
+
+        Professor novoProfessor = ProfessorController.buscarProfessorPorNome(nomeProfessor);
+        if (novoProfessor == null) {
+            System.out.println("Erro: Professor não encontrado.");
+            return;
+        }
+
+        curso.setProfessor(novoProfessor);
+        System.out.println("Professor alterado com sucesso para: " + novoProfessor.getNome());
     }
 }
