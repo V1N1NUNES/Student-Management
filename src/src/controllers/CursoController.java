@@ -206,7 +206,7 @@ public class CursoController {
             CursoView.enviarMenuCurso();
         }
         //leitura.close();
-    }     //error
+    }    //error
 
     //metodos de edição e busca
     public static void alterarNome(String nome){
@@ -225,7 +225,7 @@ public class CursoController {
         Main.enviarMenu();
 
         //leitura.close();
-    }      //error
+    }     //error
 
     public static void alterarCargaHoraria(String nome){
         Scanner leitura = new Scanner(System.in);
