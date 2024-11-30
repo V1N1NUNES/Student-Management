@@ -1,13 +1,10 @@
 package controllers;
 
 import models.Curso;
-import models.Estudante;
 import models.Professor;
 import views.CursoView;
-import views.Main;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class CursoController {
@@ -45,7 +42,7 @@ public class CursoController {
             return;
         }
 
-        Curso novoCurso = new Curso(nomeCurso, cargaHoraria, ministrante, new ArrayList<>());
+        Curso novoCurso = new Curso(nomeCurso, cargaHoraria, ministrante);
 
         if (Curso.getCursos() == null) {
             Curso.setCursos(new ArrayList<>());

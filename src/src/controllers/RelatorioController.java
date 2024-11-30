@@ -2,7 +2,6 @@ package controllers;
 
 import models.Estudante;
 import views.EstudanteView;
-import views.ProfessorView;
 
 import java.util.Scanner;
 

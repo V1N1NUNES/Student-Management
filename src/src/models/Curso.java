@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
-    private String nomeCurso;
-    private int cargaHoraria;
-    private Professor professor;
-    private static List<Curso> cursos = new ArrayList<>();
+    private String nomeCurso;        // Nome do curso
+    private int cargaHoraria;        // Carga horária do curso
+    private Professor professor;     // Professor associado ao curso
+    private static List<Curso> cursos = new ArrayList<>(); // Lista estática de cursos
 
-    // Construtor
-    public Curso(String nomeCurso, int cargaHoraria, Professor professor, List<Estudante> alunos) {
+    // **Construtor**
+    public Curso(String nomeCurso, int cargaHoraria, Professor professor) {
         this.nomeCurso = nomeCurso;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
     }
 
-    // Getters e Setters
+    // **Getters e Setters** (acessores e modificadores para os atributos)
     public String getNomeCurso() {
         return nomeCurso;
     }
@@ -49,7 +49,9 @@ public class Curso {
         Curso.cursos = cursos;
     }
 
-    // Métodos de busca e exclusão
+    // **Métodos estáticos de busca e exclusão de cursos**
+
+    // Busca um curso pelo nome
     public static Curso buscarCursoPorNome(String nomeCurso) {
         if (nomeCurso == null || nomeCurso.isEmpty()) {
             System.out.println("Erro: Nome do curso não pode estar vazio.");
@@ -61,10 +63,12 @@ public class Curso {
                 .orElse(null);
     }
 
+    // Exclui um curso pelo nome
     public static boolean excluirCursoPorNome(String nomeCurso) {
         Curso curso = buscarCursoPorNome(nomeCurso);
         if (curso != null) {
             cursos.remove(curso);
+            System.out.println("Curso '" + nomeCurso + "' foi excluído com sucesso.");
             return true;
         }
         System.out.println("Erro: Curso com o nome '" + nomeCurso + "' não foi encontrado.");
