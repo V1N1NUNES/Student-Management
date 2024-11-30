@@ -7,8 +7,8 @@ public class Main {
     public static void enviarMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        Utilidades.limparMensagens();
-        System.out.println("Gerenciamento Estudantil");
+
+        System.out.println("\n\n== Gerenciamento Estudantil ==");
         System.out.println(" ");
         System.out.println("1. Menu de Alunos");
         System.out.println("2. Menu de Professor");
@@ -22,19 +22,15 @@ public class Main {
         do {
             switch(opcao) {
                 case 1:
-                    Utilidades.limparMensagens();
                     EstudanteView.enviarMenuAluno();
                     break;
                 case 2:
-                    Utilidades.limparMensagens();
                     ProfessorView.enviarMenuProfessor();
                     break;
                 case 3:
-                    Utilidades.limparMensagens();
                     CursoView.enviarMenuCurso();
                     break;
                 case 4:
-                    Utilidades.limparMensagens();
                     Relatorios.enviarRelatorios();
                     break;
                 case 5:

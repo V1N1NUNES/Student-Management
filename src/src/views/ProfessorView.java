@@ -11,7 +11,7 @@ public class ProfessorView {
 
         do {
             // Exibir menu
-            System.out.println("\nMenu de Professor");
+            System.out.println("\n\n == Menu de Professor ==");
             System.out.println(" ");
             System.out.println("1. Cadastrar Professor");
             System.out.println("2. Editar Professor");
@@ -32,23 +32,19 @@ public class ProfessorView {
             // Processar opção escolhida
             switch (opcao) {
                 case 1:
-                    Utilidades.limparMensagens();
                     ProfessorController.cadastrarProfessor();
                     break;
                 case 2:
-                    Utilidades.limparMensagens();
                     System.out.print("Digite o nome do professor para editar: ");
                     String nomeParaEditar = scanner.nextLine();
                     ProfessorController.editarProfessor(nomeParaEditar);
                     break;
                 case 3:
-                    Utilidades.limparMensagens();
                     System.out.print("Digite o nome do professor para excluir: ");
                     String nomeParaExcluir = scanner.nextLine();
                     ProfessorController.excluirProfessor(nomeParaExcluir);
                     break;
                 case 4:
-                    Utilidades.limparMensagens();
                     System.out.print("Digite o nome do professor para consultar: ");
                     String nomeParaConsultar = scanner.nextLine();
                     consultarProfessor(nomeParaConsultar);

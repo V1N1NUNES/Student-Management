@@ -9,9 +9,8 @@ public class EstudanteView {
     public static Estudante estudante;
 
     public static void enviarMenuAluno() {
-        Utilidades.limparMensagens();
 
-        System.out.println("Menu de Aluno");
+        System.out.println("\n\n == Menu de Aluno ==");
         System.out.println(" ");
         System.out.println("1. Cadastrar aluno");
         System.out.println("2. Consultar aluno");
@@ -26,23 +25,18 @@ public class EstudanteView {
         do {
             switch(opcao) {
                 case 1:
-                    Utilidades.limparMensagens();
                     EstudanteController.cadastrarEstudante();
                     break;
                 case 2:
-                    Utilidades.limparMensagens();
                     EstudanteController.consultarEstudante();
                     break;
                 case 3:
-                    Utilidades.limparMensagens();
                     EstudanteController.editarEstudante();
                     break;
                 case 4:
-                    Utilidades.limparMensagens();
                     EstudanteController.excluirEstudante();
                     break;
                 case 5:
-                    Utilidades.limparMensagens();
                     Main.enviarMenu();
                     break;
                 default:
