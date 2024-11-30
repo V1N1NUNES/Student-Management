@@ -1,33 +1,34 @@
 package models;
 
 public abstract class Pessoa {
-    private String nome;  // Armazena o nome da pessoa.
-    private int idade;  // Armazena a idade da pessoa.
+    private String nome;
+    private int idade;
 
-    // Construtor da classe: inicializa o nome e a idade.
     public Pessoa(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
     }
 
-    // Getters e Setters para acessar e modificar o nome e a idade.
+    @Override
+    public String toString() {
+        return nome; // Retorna o nome do professor ao invés da representação padrão do objeto
+    }
+
     public String getNome() {
-        return nome;  // Retorna o nome da pessoa.
+        return nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;  // Define o nome da pessoa.
+        this.nome = nome;
     }
 
     public int getIdade() {
-        return idade;  // Retorna a idade da pessoa.
+        return idade;
     }
 
     public void setIdade(int idade) {
-        this.idade = idade;  // Define a idade da pessoa.
+        this.idade = idade;
     }
 
-    // Método abstrato a ser implementado pelas subclasses para exibir os dados.
     public abstract void exibirDados();
 }
-

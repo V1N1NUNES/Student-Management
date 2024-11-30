@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Professor;
+import views.CursoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,8 @@ public class ProfessorController {
         professores.add(novoProfessor);
 
         System.out.println("Professor cadastrado com sucesso!");
+        System.out.println("Voltando para o menu de cursos.");
+        CursoView.enviarMenuCurso();
     }
 
     public static void editarProfessor(String nomeProfessor) {

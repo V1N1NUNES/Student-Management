@@ -48,8 +48,8 @@ public class RelatorioController {
         System.out.println("Pressione ENTER ou RETURN para retornar ao menu...");
         scanner.nextLine();
         EstudanteView.enviarMenuAluno();
-    }            //implementar direito o relatório de professores
-
+    }
+                //implementar direito o relatório de professores
      */
 }
 
