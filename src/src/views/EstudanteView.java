@@ -10,37 +10,45 @@ public class EstudanteView {
 
     public static void enviarMenuAluno() {
         Utilidades.limparMensagens();
-        System.out.println("Menu de alunos:");
+
+        System.out.println("Menu de Aluno");
         System.out.println(" ");
-        System.out.println("1. Cadastrar aluno");
+        System.out.println("1. Cadastrar luno");
         System.out.println("2. Consultar aluno");
-        System.out.println("3. editar aluno");
-        System.out.println("4. excluir aluno");
-        System.out.println("5. Voltar ao menu principal");
+        System.out.println("3. Editar aluno");
+        System.out.println("4. Excluir aluno");
+        System.out.println("5. Voltar");
+        System.out.println(" ");
 
         Scanner scanner = new Scanner(System.in);
-
         int opcao = scanner.nextInt();
 
         do {
             switch(opcao) {
                 case 1:
+                    Utilidades.limparMensagens();
                     EstudanteController.cadastrarEstudante();
                     break;
                 case 2:
+                    Utilidades.limparMensagens();
                     EstudanteController.consultarEstudante();
                     break;
                 case 3:
+                    Utilidades.limparMensagens();
                     //implmentar
                     break;
                 case 4:
+                    Utilidades.limparMensagens();
                     //implmentar
                     break;
                 case 5:
-                    //implmentar
+                    Utilidades.limparMensagens();
+                    Main.enviarMenu();
                     break;
                 default:
-                    System.out.println("A opção informada não foi encontrada.");
+                    System.out.println("\nA opção informada não é válida.");
+                    enviarMenu();
+                    break;
             }
         } while(opcao <= 0 || opcao >= 4);
     }

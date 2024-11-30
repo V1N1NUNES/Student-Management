@@ -10,10 +10,12 @@ public class Relatorios {
         int opcao;
 
         System.out.println("Menu de relatórios\n");
+        System.out.println(" ");
         System.out.println("1. Relatório de Estudantes");
         System.out.println("2. Relatório de Professores");
         System.out.println("3. Relatório de Cursos");
         System.out.println("4. Voltar");
+        System.out.println(" ");
 
         opcao = leitura.nextInt();
         Utilidades.limparMensagens();
@@ -33,6 +35,6 @@ public class Relatorios {
                     Main.enviarMenu();
                     break;
             }
-        }while (opcao != 4);
+        } while (opcao != 4);
     }
 }
