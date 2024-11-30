@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Professor;
-import views.CursoView;
 import views.ProfessorView;
 
 import java.util.ArrayList;
@@ -157,6 +156,9 @@ public class ProfessorController {
         }
     }
 
+    public static List<Professor> getProfessores() {
+        return professores;
+    }
     // Validações para nome, idade e especialidade
     public static String validarNome(String nome) {
         if (nome == null || nome.trim().isEmpty()) return "O nome não pode ser vazio.";

@@ -1,7 +1,10 @@
 package controllers;
 
+import models.Curso;
 import models.Estudante;
+import models.Professor;
 import views.EstudanteView;
+import views.ProfessorView;
 
 import java.util.Scanner;
 
@@ -27,28 +30,41 @@ public class RelatorioController {
         EstudanteView.enviarMenuAluno();
     }
 
-    /*
-    public static void relatorioDeProfessores(){
+    public static void relatorioProfessor() {
         Scanner scanner = new Scanner(System.in);
 
-        if (Professor.professores.isEmpty()) {
-            System.out.println("Nenhum professor foi cadastrado.");
+        // Verifica se há professores cadastrados
+        if (ProfessorController.getProfessores().isEmpty()) {
+            System.out.println("Nenhum professor foi cadastrado!");
             System.out.println("Pressione ENTER ou RETURN para retornar ao menu...");
             scanner.nextLine();
-            ProfessorView.enviarMenuProfessor();
+            ProfessorView.enviarMenuProfessor(); // Retorno ao menu de professores
             return;
         }
 
-        System.out.println("Listando todos os professores cadastrados: ");
-        for (Professor professores: Professor.professores) {
-            System.out.println("Nome: " + professores.getNome() + " - Matrícula: " + professores.getMatricula());
+        // Lista os professores cadastrados
+        System.out.println("Listando todos os professores cadastrados:");
+        for (Professor professor : ProfessorController.getProfessores()) {
+            // Exibe informações do professor
+            System.out.println("Nome Professor: " + professor.getNome());
+            System.out.println("Idade do Professor: " + professor.getIdade());
+            System.out.println("Especialidade: " + professor.getEspecialidade());
+
+            // Busca o curso associado ao professor
+            Curso cursoAssociado = Curso.buscarCursoPorProfessor(professor.getNome());
+            if (cursoAssociado != null) {
+                System.out.println("Curso Associado: " + cursoAssociado.getNomeCurso());
+                System.out.println("Carga Horária do Curso: " + cursoAssociado.getCargaHoraria());
+            } else {
+                System.out.println("Curso Associado: Nenhum curso atribuído.");
+            }
+
+            System.out.println("-----------------------------");
         }
 
         System.out.println("Pressione ENTER ou RETURN para retornar ao menu...");
         scanner.nextLine();
-        EstudanteView.enviarMenuAluno();
+        ProfessorView.enviarMenuProfessor(); // Retorno ao menu de professores
     }
-                //implementar direito o relatório de professores
-     */
 }
 

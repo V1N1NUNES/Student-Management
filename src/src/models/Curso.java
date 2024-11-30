@@ -62,7 +62,12 @@ public class Curso {
                 .findFirst()
                 .orElse(null);
     }
-
+    public static Curso buscarCursoPorProfessor(String nomeProfessor) {
+        return cursos.stream()
+                .filter(curso -> curso.getProfessor().getNome().equalsIgnoreCase(nomeProfessor))
+                .findFirst()
+                .orElse(null);
+    }
     // Exclui um curso pelo nome
     public static boolean excluirCursoPorNome(String nomeCurso) {
         Curso curso = buscarCursoPorNome(nomeCurso);

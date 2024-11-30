@@ -21,20 +21,6 @@ public class Estudante extends Pessoa {
         this.matricula = matricula;  // Define a matrícula do estudante.
     }
 
-    public static ArrayList<Estudante> getEstudantes() {
-        return estudantes;  // Retorna a lista de todos os estudantes.
-    }
-
-    // Adiciona um novo estudante à lista estática.
-    public void addEstudante(Estudante estudante) {
-        estudantes.add(estudante);
-    }
-
-    // Remove um estudante da lista estática.
-    public void removeEstudante(Estudante estudante) {
-        estudantes.remove(estudante);
-    }
-
     @Override
     public void exibirDados() {
         // Sobrescreve o método exibirDados para exibir as informações do estudante.

@@ -1,12 +1,11 @@
 package views;
 
 import controllers.EstudanteController;
-import models.Estudante;
 
 import java.util.Scanner;
 
 public class EstudanteView {
-    public static Estudante estudante;
+
 
     public static void enviarMenuAluno() {
 
