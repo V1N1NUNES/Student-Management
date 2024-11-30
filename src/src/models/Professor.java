@@ -2,21 +2,21 @@ package models;
 
 import java.util.ArrayList;
 
-public class Professor extends Pessoa{
+public class Professor extends Pessoa {
     private String nome;
     private int idade;
     private String especialidade;
-    private ArrayList<Professor> professores;
 
+    // Lista estática de professores
+    public static ArrayList<Professor> professores = new ArrayList<>();
 
-    //Construtor de professor
-    public Professor(String nome, int idade, String Especialidade){
+    // Construtor de professor
+    public Professor(String nome, int idade, String especialidade) {
         super(nome, idade);
-        this.especialidade = Especialidade;
+        this.especialidade = especialidade;
     }
 
-
-    //getters and stters
+    // Getters e Setters
     @Override
     public String getNome() {
         return nome;
@@ -45,15 +45,24 @@ public class Professor extends Pessoa{
         this.especialidade = especialidade;
     }
 
-    public ArrayList<Professor> getProfessores() {
+    public static ArrayList<Professor> getProfessores() {
         return professores;
+    }
+
+    // Métodos para adicionar e remover professores
+    public static void addProfessor(Professor professor) {
+        professores.add(professor);
+    }
+
+    public static void removeProfessor(Professor professor) {
+        professores.remove(professor);
     }
 
     @Override
     public void exibirDados() {
         System.out.println("Informações do professor:\n");
-        System.out.println("Nome do professor: "+ getNome());
-        System.out.println("Idade: "+ getIdade());
-        System.out.println("Especialidade: "+ getEspecialidade());
+        System.out.println("Nome do professor: " + getNome());
+        System.out.println("Idade: " + getIdade());
+        System.out.println("Especialidade: " + getEspecialidade());
     }
 }
