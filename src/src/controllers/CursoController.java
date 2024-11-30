@@ -43,9 +43,10 @@ public class CursoController {
             System.out.println("Digite o nome do professor ministrante (já cadastrado): ");
             NomeMinistrante = leitura.nextLine();
 
-            if (ProfessorController.buscarProfessorPorNome(NomeMinistrante) != null) {
-                ministrante = ProfessorController.buscarProfessorPorNome(NomeMinistrante);
-            } else {
+            // Verifica se o professor existe
+            ministrante = ProfessorController.buscarProfessorPorNome(NomeMinistrante);
+
+            if (ministrante == null) {
                 System.out.println("Professor não encontrado.\n");
                 int opcao;
                 do {
@@ -57,6 +58,7 @@ public class CursoController {
                     switch (opcao) {
                         case 1:
                             ProfessorController.cadastrarProfessor();
+                            ministrante = ProfessorController.buscarProfessorPorNome(NomeMinistrante); // Atualiza a variável ministrante
                             break;
                         case 2:
                             CursoView.enviarMenuCurso();
@@ -85,7 +87,6 @@ public class CursoController {
 
         } while (!validacao);
 
-        //leitura.close();
         System.out.println("Voltando ao Menu de cursos...\n");
         Main.enviarMenu();
     }

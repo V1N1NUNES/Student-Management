@@ -8,138 +8,138 @@ import java.util.Scanner;
 
 public class EstudanteController {
 
-    // Objeto Scanner para capturar entrada do usuário
+    // Objeto Scanner compartilhado para capturar entrada do usuário
     private static final Scanner scanner = new Scanner(System.in);
 
     // **Função para cadastrar um estudante**
     public static void cadastrarEstudante() {
-        String nomeDoEstudante; // Armazena o nome do estudante
-        String matricula;       // Armazena a matrícula do estudante
-        int idade;              // Armazena a idade do estudante
+        String nomeDoEstudante; // Nome do estudante
+        String matricula; // Matrícula do estudante
+        int idade; // Idade do estudante
 
-        // Limpa mensagens anteriores e solicita o nome do estudante
+        // Limpa mensagens na tela
         Utilidades.limparMensagens();
         System.out.println("Digite o nome do estudante: ");
-        nomeDoEstudante = scanner.nextLine(); // Lê o nome do estudante
+        nomeDoEstudante = scanner.nextLine(); // Captura o nome do estudante
 
-        // Valida a idade do estudante para que esteja entre 1 e 130 anos
+        // Validação da idade: deve ser maior que 0 e menor que 130
         do {
+            Utilidades.limparMensagens();
             System.out.println("Digite a idade do estudante (maior que 0 e menor que 130): ");
-            idade = Integer.parseInt(scanner.nextLine()); // Lê a idade como string e converte para inteiro
-        } while (idade <= 0 || idade > 130); // Repetir enquanto a idade for inválida
+            idade = scanner.nextInt();
+        } while (idade <= 0 || idade > 130);
 
-        // Solicita a matrícula do estudante
-        System.out.println("Digite a matrícula do estudante: ");
-        matricula = scanner.nextLine(); // Lê a matrícula
+        scanner.nextLine(); // Consumir a quebra de linha pendente após nextInt()
 
-        // **Verifica se a matrícula já existe na lista**
-        for (Estudante estudante : Estudante.estudantes) {
-            if (estudante.getMatricula().equals(matricula)) {
-                // Exibe mensagem de erro se a matrícula já estiver cadastrada
-                System.out.println("Já existe um estudante com essa matrícula.");
-                EstudanteView.enviarMenuAluno(); // Volta ao menu do estudante
-                return; // Sai da função
+        // Validação da matrícula: deve conter apenas números
+        do {
+            System.out.println("\nDigite a matrícula do estudante (apenas números): ");
+            matricula = scanner.nextLine();
+
+            if (!matricula.matches("\\d+")) { // Verifica se contém apenas dígitos
+                System.out.println("Matrícula inválida. Certifique-se de digitar apenas números.");
             }
-        }
+        } while (!matricula.matches("\\d+"));
 
-        // Adiciona um novo estudante à lista
+        // Adiciona o estudante à lista global de estudantes
         Estudante.estudantes.add(new Estudante(nomeDoEstudante.trim(), idade, matricula.trim()));
-        System.out.println("O estudante " + nomeDoEstudante + " foi cadastrado com sucesso!");
 
-        // Volta ao menu do estudante após o cadastro
-        EstudanteView.enviarMenuAluno();
-    }  //error (verificação de matricula)
+        // Confirmação de cadastro
+        Utilidades.limparMensagens();
+        System.out.println("O estudante " + nomeDoEstudante.trim() + " foi cadastrado com sucesso!");
+        EstudanteView.enviarMenuAluno(); // Retorna ao menu principal
+    }
 
     // **Função para consultar um estudante**
     public static void consultarEstudante() {
-        System.out.println("Digite a matrícula do estudante: ");
-        String matriculaEstudante = scanner.nextLine(); // Lê a matrícula do estudante para consulta
+        String matriculaEstudante; // Matrícula a ser buscada
+        Estudante estudanteAlvo = null; // Estudante encontrado (se existir)
 
-        // Procura o estudante na lista com base na matrícula
-        Estudante estudanteAlvo = null;
+        // Solicita matrícula válida e verifica se há somente números na entrada
+        do {
+            System.out.println("Digite a matrícula do estudante (apenas números): ");
+            matriculaEstudante = scanner.nextLine();
+
+            if (!matriculaEstudante.matches("\\d+")) { // Validação de entrada
+                System.out.println("Matrícula inválida. Certifique-se de digitar apenas números.");
+            }
+        } while (!matriculaEstudante.matches("\\d+"));
+
+        // Busca o estudante pela matrículag
         for (Estudante estudante : Estudante.estudantes) {
             if (estudante.getMatricula().equals(matriculaEstudante)) {
                 estudanteAlvo = estudante;
-                break; // Sai do loop quando encontra o estudante
+                break; // Para a busca após encontrar o estudante
             }
         }
 
-        // Exibe as informações do estudante ou uma mensagem de erro
+        // Exibe os dados ou mensagem de erro
         if (estudanteAlvo != null) {
-            estudanteAlvo.exibirDados(); // Exibe os dados do estudante
+            estudanteAlvo.exibirDados(); // Exibe informações do estudante encontrado
         } else {
             System.out.println("Estudante não encontrado.");
         }
 
-        // Pausa para que o usuário leia as informações antes de voltar ao menu
+        // Pausa antes de voltar ao menu
         System.out.println("Pressione Enter para voltar ao menu...");
-        scanner.nextLine(); // Aguarda o pressionamento de Enter
-        EstudanteView.enviarMenuAluno(); // Volta ao menu do estudante
+        scanner.nextLine(); // Aguarda entrada do usuário
+        EstudanteView.enviarMenuAluno(); // Retorna ao menu principal
     }
 
     // **Função para editar informações de um estudante**
     public static void editarEstudante() {
         System.out.println("Digite a matrícula do estudante que deseja editar: ");
-        String matriculaEstudante = scanner.nextLine(); // Lê a matrícula do estudante para edição
+        String matriculaEstudante = scanner.nextLine(); // Lê a matrícula para identificar o estudante
 
-        // Procura o estudante na lista
-        Estudante estudanteAlvo = null;
+        Estudante estudanteAlvo = null; // Estudante encontrado (se existir)
         for (Estudante estudante : Estudante.estudantes) {
             if (estudante.getMatricula().equals(matriculaEstudante)) {
                 estudanteAlvo = estudante;
-                break; // Sai do loop quando encontra o estudante
+                break; // Sai do loop ao encontrar o estudante
             }
         }
 
-        // Verifica se o estudante foi encontrado
-        if (estudanteAlvo == null) {
+        if (estudanteAlvo == null) { // Verifica se o estudante foi encontrado
             System.out.println("Estudante não encontrado.");
-            EstudanteView.enviarMenuAluno(); // Volta ao menu do estudante
-            return; // Sai da função
+            EstudanteView.enviarMenuAluno(); // Volta ao menu principal
+            return; // Encerra a função
         }
 
-        // Solicita novas informações para atualizar o estudante
+        // Solicita novas informações e atualiza os dados
         System.out.println("Digite o novo nome (atualmente: " + estudanteAlvo.getNome() + "): ");
-        estudanteAlvo.setNome(scanner.nextLine().trim()); // Atualiza o nome
+        estudanteAlvo.setNome(scanner.nextLine().trim());
 
         System.out.println("Digite a nova idade (atualmente: " + estudanteAlvo.getIdade() + "): ");
-        estudanteAlvo.setIdade(Integer.parseInt(scanner.nextLine())); // Atualiza a idade
+        estudanteAlvo.setIdade(Integer.parseInt(scanner.nextLine()));
 
         System.out.println("Digite a nova matrícula (atualmente: " + estudanteAlvo.getMatricula() + "): ");
-        estudanteAlvo.setMatricula(scanner.nextLine().trim()); // Atualiza a matrícula
+        estudanteAlvo.setMatricula(scanner.nextLine().trim());
 
-        // Exibe mensagem de sucesso
+        // Confirmação de atualização
         System.out.println("As informações do estudante foram atualizadas com sucesso!");
-
-        // Volta ao menu do estudante após a edição
-        EstudanteView.enviarMenuAluno();
+        EstudanteView.enviarMenuAluno(); // Retorna ao menu principal
     }
 
     // **Função para excluir um estudante**
     public static void excluirEstudante() {
         System.out.println("Digite a matrícula do estudante que deseja excluir: ");
-        String matriculaEstudante = scanner.nextLine(); // Lê a matrícula do estudante para exclusão
+        String matriculaEstudante = scanner.nextLine(); // Lê a matrícula para exclusão
 
-        // Procura o estudante na lista
-        Estudante estudanteAlvo = null;
+        Estudante estudanteAlvo = null; // Estudante encontrado (se existir)
         for (Estudante estudante : Estudante.estudantes) {
             if (estudante.getMatricula().equals(matriculaEstudante)) {
                 estudanteAlvo = estudante;
-                break; // Sai do loop quando encontra o estudante
+                break; // Sai do loop ao encontrar o estudante
             }
         }
 
-        // Verifica se o estudante foi encontrado
-        if (estudanteAlvo != null) {
-            // Remove o estudante da lista
-            Estudante.estudantes.remove(estudanteAlvo);
+        if (estudanteAlvo != null) { // Verifica se o estudante foi encontrado
+            Estudante.estudantes.remove(estudanteAlvo); // Remove o estudante
             System.out.println("O estudante foi excluído com sucesso.");
         } else {
-            System.out.println("Estudante não encontrado.");
+            System.out.println("Estudante não encontrado."); // Mensagem de erro
         }
 
-        // Volta ao menu do estudante após a exclusão
-        EstudanteView.enviarMenuAluno();
+        EstudanteView.enviarMenuAluno(); // Retorna ao menu principal
     }
 }
-

@@ -38,8 +38,7 @@ public class Professor extends Pessoa {
 
     @Override
     public void exibirDados() {
-        // Exibe as informações do professor.
-        System.out.println("Informações do professor:");
+        System.out.println("\nInformações do professor:");
         System.out.println("Nome: " + getNome());
         System.out.println("Idade: " + getIdade());
         System.out.println("Especialidade: " + especialidade);

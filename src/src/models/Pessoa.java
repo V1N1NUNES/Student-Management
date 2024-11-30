@@ -11,6 +11,11 @@ public abstract class Pessoa {
     }
 
     // Getters e Setters para acessar e modificar o nome e a idade.
+    @Override
+    public String toString() {
+        return nome; // Retorna o nome do professor ao invés da representação padrão do objeto
+    }
+
     public String getNome() {
         return nome;  // Retorna o nome da pessoa.
     }
