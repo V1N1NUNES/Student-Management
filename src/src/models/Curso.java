@@ -1,19 +1,20 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
     private String nomeCurso;
     private int cargaHoraria;
     private models.Professor professor;
-    private List<Estudante> alunos;
+    private static List<Curso> cursos = new ArrayList<>();
+
 
     //construtor de cursos
     public Curso(String nomeCurso, int cargaHoraria, Professor professor, List<Estudante> alunos) {
         this.nomeCurso = nomeCurso;
         this.cargaHoraria = cargaHoraria;
         this.professor = professor;
-        this.alunos = Estudante.getEstudantes();
     }
 
 
@@ -45,11 +46,27 @@ public class Curso {
         this.professor = professor;
     }
 
-    public List<Estudante> getAlunos() {
-        return alunos;
+    public static List<Curso> getCursos() {
+        return cursos;
     }
 
-    public void setAlunos(List<Estudante> alunos) {
-        this.alunos = alunos;
+    public static void setCursos(ArrayList<Curso> cursos) {
+        Curso.cursos = cursos;
+    }
+
+    public static Curso buscarCursoPorNome(String nomeCurso) {
+        return cursos.stream()
+                .filter(curso -> curso.getNomeCurso().equalsIgnoreCase(nomeCurso))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static boolean excluirCursoPorNome(String nomeCurso) {
+        Curso curso = buscarCursoPorNome(nomeCurso);
+        if (curso != null) {
+            cursos.remove(curso);
+            return true;
+        }
+        return false;
     }
 }

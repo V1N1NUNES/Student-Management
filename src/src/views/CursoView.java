@@ -13,29 +13,38 @@ public class CursoView {
         int opcao;
 
         do{
-            System.out.println("1. alterar nome do curso\n");
-            System.out.println("2. alterar carga horária\n");
-            System.out.println("3. alterar professor ministrante\n");
-            System.out.println("4. voltar ao menu de cursos\n");
+            System.out.println("\n Sistema de Gerenciamento de Cursos");
+            System.out.println(" ");
+            System.out.println("1. Alterar nome do curso\n");
+            System.out.println("2. Alterar carga horária\n");
+            System.out.println("3. Alterar professor ministrante\n");
+            System.out.println("4. Voltar\n");
+            System.out.println(" ");
+
             opcao = leitura.nextInt();
 
             switch(opcao){
                 case 1:
+                    Utilidades.limparMensagens();
                     CursoController.alterarNome();
                     break;
                 case 2:
+                    Utilidades.limparMensagens();
                     CursoController.alterarCargaHoraria();
                     break;
                 case 3:
+                    Utilidades.limparMensagens();
                     CursoController.alterarProfessor();
                     break;
                 case 4:
-                    CursoView.enviarMenuCurso();
+                    Utilidades.limparMensagens();
+                    Main.enviarMenu();
                     break;
                 default:
+                    System.out.println("\nA opção informada não é válida.");
                     break;
             }
-        }while(opcao != 4);
+        } while(opcao != 4);
 
         leitura.close();
     }
