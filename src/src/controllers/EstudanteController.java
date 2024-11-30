@@ -65,11 +65,11 @@ public class EstudanteController {
             }
         } while (!matriculaEstudante.matches("\\d+"));
 
-        // Busca o estudante pela matrícula
+        // Busca o estudante pela matrículag
         for (Estudante estudante : Estudante.estudantes) {
             if (estudante.getMatricula().equals(matriculaEstudante)) {
                 estudanteAlvo = estudante;
-                break; // Para a busca ao encontrar o estudante
+                break; // Para a busca após encontrar o estudante
             }
         }
 
